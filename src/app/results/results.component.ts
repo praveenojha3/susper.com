@@ -32,7 +32,7 @@ export class ResultsComponent implements OnInit {
   searchdata: any = {
     query: '',
     start: 0,
-    rows: 10,
+    rows: 10
   };
 
   expandedkey: number;
@@ -97,6 +97,20 @@ export class ResultsComponent implements OnInit {
       i = i + 1;
     }
   }
+  newsClick() {
+  let urldata = Object.assign({}, this.searchdata);
+  this.getPresentPage(1);
+  this.resultDisplay = 'news';
+  delete urldata.fq;
+  urldata.rows = 10;
+  if(urldata.query.substr(urldata.query.length- 25, 25) !== " site:www.dailymail.co.uk")
+    urldata.query += " site:www.dailymail.co.uk";
+  else
+    urldata.query+="";
+  urldata.resultDisplay = this.resultDisplay;
+  this.store.dispatch(new queryactions.QueryServerAction(urldata));
+  }
+
 
   videoClick() {
     let urldata = Object.assign({}, this.searchdata);
@@ -110,6 +124,9 @@ export class ResultsComponent implements OnInit {
     urldata.resultDisplay = this.resultDisplay;
     this.store.dispatch(new queryactions.QueryServerAction(urldata));
   }
+
+    
+  
 
   imageClick() {
     let urldata = Object.assign({}, this.searchdata);
