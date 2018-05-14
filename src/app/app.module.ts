@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule, JsonpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { JsonpModule,HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { IndexComponent } from './index/index.component';
@@ -94,7 +95,7 @@ const appRoutes: Routes = [
     InfiniteScrollModule,
     CommonModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     JsonpModule,
     RouterModule.forRoot(appRoutes),
     StoreModule.provideStore(reducer),
